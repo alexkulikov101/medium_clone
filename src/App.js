@@ -1,24 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import GlobalFeed from './pages/GlodalFeed';
+import Artical from './pages/Artical';
+import TopBar from './components/TopBar';
+import Auth from './pages/Auth';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Router>
+        <TopBar />
+        <Switch>
+          <Route path='/' exact component={GlobalFeed}></Route>
+          <Route path='/login' exact component={Auth}></Route>
+          <Route path='/register' exact component={Auth}></Route>
+          <Route path='/articles/:slug' exact component={Artical}></Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
