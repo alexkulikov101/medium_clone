@@ -4,19 +4,22 @@ import GlobalFeed from './pages/GlodalFeed';
 import Artical from './pages/Artical';
 import TopBar from './components/TopBar';
 import Auth from './pages/Auth';
+import { CurrentUserProvider } from './context/currentUser';
 
 function App() {
   return (
     <div className='App'>
-      <Router>
-        <TopBar />
-        <Switch>
-          <Route path='/' exact component={GlobalFeed}></Route>
-          <Route path='/login' exact component={Auth}></Route>
-          <Route path='/register' exact component={Auth}></Route>
-          <Route path='/articles/:slug' exact component={Artical}></Route>
-        </Switch>
-      </Router>
+      <CurrentUserProvider>
+        <Router>
+          <TopBar />
+          <Switch>
+            <Route path='/' exact component={GlobalFeed}></Route>
+            <Route path='/login' exact component={Auth}></Route>
+            <Route path='/register' exact component={Auth}></Route>
+            <Route path='/articles/:slug' exact component={Artical}></Route>
+          </Switch>
+        </Router>
+      </CurrentUserProvider>
     </div>
   );
 }
