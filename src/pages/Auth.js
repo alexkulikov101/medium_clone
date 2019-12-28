@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import useLocalStorage from '../hooks/useLocalStorage';
+import BackendErrorMessages from '../components/BackendErrorMessages';
 import { CurrentUserContext } from '../context/currentUser';
 
 const Auth = props => {
@@ -14,12 +15,11 @@ const Auth = props => {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [isSuccessfullSubmit, setIsSuccessfullSubmit] = useState(false);
-  const [{ isLoading, response }, doFetch] = useFetch(apiUrl);
+  const [{ isLoading, response, error }, doFetch] = useFetch(apiUrl);
   const [token, setToken] = useLocalStorage('token');
   const [currentUserState, setCurrentUserState] = useContext(
     CurrentUserContext
   );
-  console.log(currentUserState);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -63,6 +63,7 @@ const Auth = props => {
               <Link to={descriptionLink}>{descriptionText}</Link>
             </p>
             <form onSubmit={handleSubmit}>
+              {error && <BackendErrorMessages backendErrors={error.errors} />}
               <fieldset>
                 {!isLogin && (
                   <fieldset className='form-group'>
