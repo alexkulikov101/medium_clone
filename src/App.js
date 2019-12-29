@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import GlobalFeed from './pages/GlodalFeed';
-import Artical from './pages/Artical';
+import Article from './pages/Article';
 import TagFeed from './pages/TagFeed';
 import YourFeed from './pages/YourFeed';
 import TopBar from './components/TopBar';
@@ -17,12 +17,12 @@ function App() {
           <Router>
             <TopBar />
             <Switch>
-              <Route path='/' exact component={GlobalFeed}></Route>
-              <Route path='/feed' component={YourFeed}></Route>
-              <Route path='/tags/:slug' component={TagFeed}></Route>
-              <Route path='/login' component={Auth}></Route>
-              <Route path='/register' component={Auth}></Route>
-              <Route path='/articles/:slug' component={Artical}></Route>
+              <Route path='/' exact component={GlobalFeed} />
+              <Route path='/feed' component={YourFeed} />
+              <Route path='/tags/:slug' component={TagFeed} />
+              <Route path='/login' component={Auth} />
+              <Route path='/register' component={Auth} />
+              <Route path='/articles/:slug' component={Article} />
             </Switch>
           </Router>
         </CurrentUserChecker>
