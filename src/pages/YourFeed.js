@@ -10,13 +10,13 @@ import { getPaginator, limit } from '../utils/range';
 
 import useFetch from '../hooks/useFetch';
 
-const GlodalFeed = ({ location, match }) => {
+const YourFeed = ({ location, match }) => {
   const { offset, currentPage } = getPaginator(location.search);
   const stringifiedParams = stringify({
     limit,
     offset
   });
-  const apiUrl = `/articles?${stringifiedParams}`;
+  const apiUrl = `/articles/feed?${stringifiedParams}`;
   const url = match.url;
   const [{ response, isLoading, error }, doFetch] = useFetch(apiUrl);
 
@@ -58,4 +58,4 @@ const GlodalFeed = ({ location, match }) => {
   );
 };
 
-export default GlodalFeed;
+export default YourFeed;

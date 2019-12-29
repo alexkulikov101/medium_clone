@@ -10,11 +10,13 @@ import { getPaginator, limit } from '../utils/range';
 
 import useFetch from '../hooks/useFetch';
 
-const GlodalFeed = ({ location, match }) => {
+const TagFeed = ({ location, match }) => {
+  const tagName = match.params.slug;
   const { offset, currentPage } = getPaginator(location.search);
   const stringifiedParams = stringify({
     limit,
-    offset
+    offset,
+    tag: tagName
   });
   const apiUrl = `/articles?${stringifiedParams}`;
   const url = match.url;
@@ -22,7 +24,7 @@ const GlodalFeed = ({ location, match }) => {
 
   useEffect(() => {
     doFetch();
-  }, [doFetch, currentPage]);
+  }, [doFetch, currentPage, tagName]);
   return (
     <div className='home-page'>
       <div className='banner'>
@@ -34,7 +36,7 @@ const GlodalFeed = ({ location, match }) => {
       <div className='container page'>
         <div className='row'>
           <div className='col-md-9'>
-            <FeedToggler />
+            <FeedToggler tagName={tagName} />
             {isLoading && <Loading />}
             {error && <ErrorMessage />}
             {!isLoading && response && (
@@ -58,4 +60,4 @@ const GlodalFeed = ({ location, match }) => {
   );
 };
 
-export default GlodalFeed;
+export default TagFeed;
