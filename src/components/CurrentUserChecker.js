@@ -5,8 +5,6 @@ import { CurrentUserContext } from '../context/currentUser';
 import useLocalStorage from '../hooks/useLocalStorage';
 
 const CurrentUserChecker = ({ children }) => {
-  console.log('what is children?' + children);
-
   const [{ response }, doFetch] = useFetch('/user');
   const [, setCurrentUserState] = useContext(CurrentUserContext);
   const [token] = useLocalStorage('token');
