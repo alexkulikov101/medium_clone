@@ -4,6 +4,7 @@ import GlobalFeed from './pages/GlodalFeed';
 import Article from './pages/Article';
 import TagFeed from './pages/TagFeed';
 import YourFeed from './pages/YourFeed';
+import CreateArticle from './pages/CreateArticle';
 import TopBar from './components/TopBar';
 import Auth from './pages/Auth';
 import CurrentUserChecker from './components/CurrentUserChecker';
@@ -18,6 +19,7 @@ function App() {
             <TopBar />
             <Switch>
               <Route path='/' exact component={GlobalFeed} />
+              <Route path='/articles/new' component={CreateArticle} />
               <Route path='/feed' component={YourFeed} />
               <Route path='/tags/:slug' component={TagFeed} />
               <Route path='/login' component={Auth} />
